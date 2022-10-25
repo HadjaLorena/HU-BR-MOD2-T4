@@ -46,7 +46,6 @@ class Game:
 
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
-        #self.screen.blit(self.player.image, (0, 380))
 
         pygame.display.update()
         pygame.display.flip()
