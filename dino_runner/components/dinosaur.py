@@ -1,4 +1,6 @@
 import pygame
+
+from pygame.sprite import Sprite
 from dino_runner.utils.constants import RUNNING, JUMPING, DUCKING
 
 X_POS = 80
@@ -6,7 +8,7 @@ Y_POS = 310
 JUMP_VEL = 8.5
 Y_POS_DUCK = 340 # a imagem é mai baixa do que a do dino correndo
 
-class Dinosaur:
+class Dinosaur(Sprite):
     def __init__(self):
         self.image = RUNNING[0]
 
@@ -48,22 +50,21 @@ class Dinosaur:
         if(user_input[pygame.K_UP] and not self.dino_jump):
             self.dino_jump = True
             self.dino_run = False
+            self.dino_duck = False
         elif(not self.dino_jump):
             self.dino_jump = False
             self.dino_run = True
             
         # adicionei o comando do próprio pygame para o dinossauro abaixar
         if(user_input[pygame.K_DOWN] and not self.dino_jump):
-            self.dino_duck = True
-            self.dino_run = False
             self.dino_jump = False
-            
+            self.dino_run = False
+            self.dino_duck = True
         # ambos não estão acontecendo (permite que a primeira ação depois de run seja o jump)
         elif(not self.dino_duck and not self.dino_jump):
-            self.dino_duck = False
-            self.dino_run = True
             self.dino_jump = False
-        
+            self.dino_run = True   
+            self.dino_duck = False
 
 
     def jump(self):
@@ -91,9 +92,8 @@ class Dinosaur:
         
         self.step_index+= 1
 
-        if(self.dino_duck):
-          self.dino_rect.x = X_POS
-          self.dino_rect.y = Y_POS_DUCK
+        self.dino_rect.x = X_POS
+        self.dino_rect.y = Y_POS_DUCK
 
      
           
