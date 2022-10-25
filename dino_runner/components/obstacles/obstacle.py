@@ -15,7 +15,7 @@ class Obstacle(Sprite): # questão de herança (reutilização de código) -> he
     def update(self, game_speed, obstacles):
         self.rect.x -= game_speed # se move com o background
 
-        if(self.rect.x <- self.rect.width):
+        if(self.rect.x < -self.rect.width):
             obstacles.pop()
 
     def draw(self, screen):
