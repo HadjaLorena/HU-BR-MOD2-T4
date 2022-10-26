@@ -1,6 +1,6 @@
 import pygame
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DINO_DEAD, GAME_OVER
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DINO_DEAD, GAME_OVER, DINO_START
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 #from dino_runner.utils.get_format_text import get_format_text
@@ -12,6 +12,7 @@ Y_POS_DEATH_COUNT = 1.7
 X_POS_DINO_DEAD = 4
 Y_POS_DINO_DEAD = 3.8
 Y_POS_GAME_OVER = 3
+Y_POS_DINO_START = 3
 
 
 class Game:
@@ -65,8 +66,19 @@ class Game:
         font = pygame.font.Font(FONT, font_size)
 
         if(self.count_death == 0):
+
+            dino_start_image = DINO_START
+            dino_start_rect = dino_start_image.get_rect()
+
             text = font.render("Press any key to start", True, color)
             text_rect = text.get_rect()
+
+            # imagem do dino no início do game
+            dino_start_rect.x = (SCREEN_WIDTH // X_POSITION) - (dino_start_rect.width // X_POSITION)
+            dino_start_rect.y = (SCREEN_HEIGHT // Y_POS_DINO_START) - (dino_start_rect.height // Y_POS_DINO_START)
+
+            self.screen.blit(dino_start_image, (dino_start_rect.x, dino_start_rect.y))
+
 
         # se o número de mortes for maior que 0 então entra no elif
         elif(self.count_death > 0):
