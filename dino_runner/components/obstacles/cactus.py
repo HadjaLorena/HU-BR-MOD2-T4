@@ -11,3 +11,4 @@ class Cactus(Obstacle):
         super().__init__(images, self.type) # herda tudo da classe "pai" inclusive o draw (pega o que ele não tiver da classe "pai")
 
         self.rect.y = y_pos
+        

@@ -7,7 +7,7 @@ Y_POS_BIRD = 250
 class Bird(Obstacle): # herda tudo da classe Obstacle
     def __init__(self, images):
         self.type = 0
-        self.image = BIRD
+        self.images = BIRD
 
         super().__init__(images, self.type) # Volta para a classe "pai" inicializa do jeito que ela pede
 
@@ -18,11 +18,11 @@ class Bird(Obstacle): # herda tudo da classe Obstacle
     def draw(self, screen): # precisou de um draw próprio para ele, a classe "pai" era estatica e esse é dinâmico
 
         if(self.fly_index < 5): 
-            self.image = 0
+            image_index = 0 # procura na lista os valores (image index)
         else:
-            self.image = 1
+            image_index = 1
         
-        screen.blit(self.images[self.image], (self.rect.x, self.rect.y)) # a cada meio segundo ele troca a imagem e atualiza a tela
+        screen.blit(self.images[image_index], (self.rect.x, self.rect.y)) # a cada meio segundo ele troca a imagem e atualiza a tela
 
         self.fly_index+= 1
 

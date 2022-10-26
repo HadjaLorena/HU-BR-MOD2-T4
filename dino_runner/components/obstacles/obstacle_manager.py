@@ -13,12 +13,12 @@ class ObstacleManager:
     def update(self, game):
         if(len(self.obstacles) == 0):
 
-            obstacle_type = random.randint(0, 2)
+            obstacle_type_index = random.randint(0, 2)
 
-            if(obstacle_type == 0):
+            if(obstacle_type_index == 0):
                 self.obstacles.append(Cactus(SMALL_CACTUS, Y_POSITION_SMALL_CACTUS)) # adicionando um cactus e para criar um cactus estou enviando uma imagem
-            elif(obstacle_type == 1):
-                self.obstacles.append(Cactus(LARGE_CACTUS, Y_POSITION_LARGE_CACTUS))
+            elif(obstacle_type_index == 1):
+                self.obstacles.append(Cactus (LARGE_CACTUS, Y_POSITION_LARGE_CACTUS))
             else:
                 self.obstacles.append(Bird(BIRD))
             
@@ -33,3 +33,6 @@ class ObstacleManager:
     def draw(self, screen):
         for obstacle in self.obstacles:
             obstacle.draw(screen)
+
+    def reset_obstacle(self):
+        self.obstacles = []
