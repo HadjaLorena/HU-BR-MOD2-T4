@@ -28,6 +28,8 @@ class ObstacleManager:
             #manage the collision
             if(game.player.dino_rect.colliderect(obstacle.rect)):
                 game.playing = False
+                game.count_death += 1
+                pygame.time.delay(500)
                 break
 
     def draw(self, screen):

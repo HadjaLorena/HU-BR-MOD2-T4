@@ -1,8 +1,18 @@
 import pygame
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DINO_DEAD, GAME_OVER
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
+#from dino_runner.utils.get_format_text import get_format_text
+
+X_POSITION = 2
+Y_POSITION = 2
+Y_POS_SCORE = 1.5
+Y_POS_DEATH_COUNT = 1.7
+X_POS_DINO_DEAD = 4
+Y_POS_DINO_DEAD = 3.8
+Y_POS_GAME_OVER = 3
+
 
 class Game:
     def __init__(self):
@@ -18,6 +28,8 @@ class Game:
         self.clock = pygame.time.Clock()
         self.playing = False
         self.executing = False
+
+        self.count_death = 0
 
         self.game_speed = 20
         self.x_pos_bg = 0
@@ -38,9 +50,6 @@ class Game:
         while(self.executing):
             self.display_menu()
 
-            if(not self.playing):
-                self.reset()
-
         pygame.display.quit()
         pygame.quit()
 
@@ -54,15 +63,60 @@ class Game:
         FONT = 'freesansbold.ttf'
 
         font = pygame.font.Font(FONT, font_size)
-        text_to_display = "Press any key to start"
-        
-        text = font.render(f"{text_to_display}", True, color)
 
-        score_text_rect = text.get_rect()
-        score_text_rect.x = (SCREEN_WIDTH // 2) - (score_text_rect.width // 2)
-        score_text_rect.y = (SCREEN_HEIGHT // 2) - (score_text_rect.height // 2)
+        if(self.count_death == 0):
+            text = font.render("Press any key to start", True, color)
+            text_rect = text.get_rect()
 
-        self.screen.blit(text, (score_text_rect.x, score_text_rect.y))
+        # se o número de mortes for maior que 0 então entra no elif
+        elif(self.count_death > 0):
+
+            dino_dead_image = DINO_DEAD
+            dino_dead_rect = dino_dead_image.get_rect()
+
+            game_over_image = GAME_OVER
+            game_over_rect = game_over_image.get_rect()
+            
+            text = font.render("Press any key to continue playing", True, color)
+            text_rect = text.get_rect()
+
+            score_text = font.render(f"Your Score: {self.score}", True, color)
+            score_rect = score_text.get_rect() 
+
+            death_count = font.render(f"Number of deaths: {self.count_death}", True, color)
+            death_count_rect = death_count.get_rect()
+
+            # pontuação
+            score_rect.x = (SCREEN_WIDTH // X_POSITION) - (score_rect.width // X_POSITION)
+            score_rect.y = (SCREEN_HEIGHT // Y_POS_SCORE) - (score_rect.height // Y_POS_SCORE)
+
+            self.screen.blit(score_text, (score_rect.x, score_rect.y))
+
+            # contagem de mortes
+            death_count_rect.x = (SCREEN_WIDTH // X_POSITION) - (death_count_rect.width // X_POSITION)
+            death_count_rect.y = (SCREEN_HEIGHT // Y_POS_DEATH_COUNT) - (death_count_rect.height // Y_POS_DEATH_COUNT)
+
+            self.screen.blit(death_count, (death_count_rect.x, death_count_rect.y))
+
+            # imagem do dino morto
+            dino_dead_rect.x = (SCREEN_WIDTH // X_POS_DINO_DEAD) - (dino_dead_rect.width // X_POS_DINO_DEAD)
+            dino_dead_rect.y = (SCREEN_HEIGHT // Y_POS_DINO_DEAD) - (dino_dead_rect.height // Y_POS_DINO_DEAD)
+
+            self.screen.blit(dino_dead_image, (dino_dead_rect.x, dino_dead_rect.y))
+
+            # imagem gamer over
+            game_over_rect.x = (SCREEN_WIDTH // X_POSITION) - (game_over_rect.width // X_POSITION)
+            game_over_rect.y = (SCREEN_HEIGHT // Y_POS_GAME_OVER) - (game_over_rect.height // Y_POS_GAME_OVER)
+
+            self.screen.blit(game_over_image, (game_over_rect.x, game_over_rect.y))
+            
+        # texto do jogar novamente
+        text_rect.x = (SCREEN_WIDTH // X_POSITION) - (text_rect.width // X_POSITION)
+        text_rect.y = (SCREEN_HEIGHT // Y_POSITION) - (text_rect.height // Y_POSITION)
+
+       
+        self.screen.blit(text, (text_rect.x, text_rect.y))
+
 
         # para atualizar para visualizar
 
@@ -76,6 +130,7 @@ class Game:
                 self.playing = False
                 self.executing = False
             if(event.type == pygame.KEYDOWN):
+                self.reset()
                 self.run()
 
 
