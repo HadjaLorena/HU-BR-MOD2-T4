@@ -1,11 +1,12 @@
 import pygame
 from pygame import mixer
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DINO_DEAD, GAME_OVER, DINO_START, BACKGROUND_MUSIC
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, BACKGROUND_MUSIC
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.cloud import Cloud
 from dino_runner.components.menu import Menu
+from dino_runner.components.power_ups.power_up_manager import PowerUpManager
 
 class Game:
     def __init__(self):
@@ -18,10 +19,11 @@ class Game:
 
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
+        self.power_up_manager = PowerUpManager()
+
         self.score = 0
         self.cloud = Cloud()
         self.menu = Menu(self.screen)
-
         self.clock = pygame.time.Clock()
         self.playing = False
         self.executing = False
@@ -76,6 +78,7 @@ class Game:
         self.player.update(user_input)
         self.cloud.update(self.game_speed)
         self.obstacle_manager.update(self)
+        self.power_up_manager.update(self)
 
         self.update_score()
         self.update_game_speed()
@@ -100,6 +103,7 @@ class Game:
         self.player.draw(self.screen)
         self.cloud.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
+        self.power_up_manager.draw(self.screen)
 
         #draw score
         self.draw_score()

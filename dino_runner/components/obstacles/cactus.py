@@ -14,6 +14,8 @@ class Cactus(Obstacle):
         self.images = [] # criei uma lista de imagens inicializada como vazia
         self.cactus_position = 0 # variável que cuida da posiçao do cactus
 
+# CRIAR UM METODO
+
         if(self.cactus_type == 0): # se random for igual a 0 então é criado um small cactus
             self.images = SMALL_CACTUS
             self.cactus_position = Y_POS_SMALL_CACTUS
