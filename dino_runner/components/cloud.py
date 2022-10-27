@@ -8,7 +8,8 @@ from dino_runner.utils.constants import SCREEN_WIDTH, CLOUD
 class Cloud(Sprite):
     def __init__(self):
         self.image = CLOUD
-
+ 
+ 
         self.rect = self.image.get_rect()
         self.rect.x = SCREEN_WIDTH + random.randint(100, 500)
         self.rect.y = random.randint(50, 150) # permite a criação da nuvem em alturas aleatórias

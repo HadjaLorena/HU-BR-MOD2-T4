@@ -19,4 +19,5 @@ class Obstacle(Sprite): # questão de herança (reutilização de código) -> he
             obstacles.pop()
 
     def draw(self, screen):
-        screen.blit(self.images[self.type], (self.rect.x, self.rect.y))
+       screen.blit(self.images[self.type], (self.rect.x, self.rect.y))
+       #screen.blit(self.images, (self.rect.x, self.rect.y))

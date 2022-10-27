@@ -84,3 +84,5 @@ BIRD_SOUND = 'HU-BR-MOD2-T4/dino_runner/utils/bird_sound.mp3'
 
 
 SHIELD_TYPE = "shield"
+
+HAMMER_TYPE = "hammer"

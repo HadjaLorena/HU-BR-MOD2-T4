@@ -1,7 +1,7 @@
 import pygame
 from pygame import mixer
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, BACKGROUND_MUSIC
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, BACKGROUND_MUSIC, DEFAULT_TYPE
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.cloud import Cloud
@@ -51,6 +51,34 @@ class Game:
 
         pygame.display.quit()
         pygame.quit()
+
+    def draw_power_up_time(self):
+        if(self.player.has_power_up):
+            time_to_show = round((self.player.power_up_time - pygame.time.get_ticks()) / 1000, 2)
+           
+            if(time_to_show >= 0):
+                self.draw_time_to_screen(time_to_show)
+                
+            else:
+                self.player.has_power_up = False
+                self.player.type = DEFAULT_TYPE
+    
+    
+    def draw_time_to_screen(self, time_to_show):
+        
+        font_size = 15
+        color = (0,0,0)
+        FONT = 'freesansbold.ttf'
+        font = pygame.font.Font(FONT, font_size)
+        
+        text_to_display = f"Power up remaining time: {time_to_show}"
+               
+        text = font.render(text_to_display,True, color)
+        text_rect = text.get_rect()
+        
+        text_rect.x = 70
+        text_rect.y = 100
+        self.screen.blit(text, (text_rect.x, text_rect.y))
 
     def display_menu(self):
         self.menu.display_menu(self.count_death, self.score)
