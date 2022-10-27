@@ -3,6 +3,7 @@ import pygame
 from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DINO_DEAD, GAME_OVER, DINO_START
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
+from dino_runner.components.cloud import Cloud
 #from dino_runner.utils.get_format_text import get_format_text
 
 X_POSITION = 2
@@ -25,6 +26,7 @@ class Game:
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
         self.score = 0
+        self.cloud = Cloud()
 
         self.clock = pygame.time.Clock()
         self.playing = False
@@ -129,7 +131,6 @@ class Game:
        
         self.screen.blit(text, (text_rect.x, text_rect.y))
 
-
         # para atualizar para visualizar
 
         pygame.display.update()
@@ -154,6 +155,7 @@ class Game:
     def update(self):
         user_input = pygame.key.get_pressed()
         self.player.update(user_input)
+        self.cloud.update(self.game_speed)
         self.obstacle_manager.update(self)
 
         self.update_score()
@@ -177,6 +179,7 @@ class Game:
         self.draw_background()
 
         self.player.draw(self.screen)
+        self.cloud.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
 
         #draw score
