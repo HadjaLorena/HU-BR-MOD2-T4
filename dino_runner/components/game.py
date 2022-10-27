@@ -10,7 +10,7 @@ from dino_runner.components.menu import Menu
 class Game:
     def __init__(self):
         pygame.init()
-        mixer.music.load(BACKGROUND_MUSIC)
+        mixer.music.load(BACKGROUND_MUSIC) # o jogo começou, a música tem que começar a tocar
         mixer.music.play(-1) # musica em loop
         pygame.display.set_caption(TITLE)
         pygame.display.set_icon(ICON)

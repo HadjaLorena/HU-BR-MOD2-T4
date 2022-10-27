@@ -71,11 +71,7 @@ HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
 DEFAULT_TYPE = "default"
 
-
 # adicionado por mim
-Y_POSITION_SMALL_CACTUS = 325
-Y_POSITION_LARGE_CACTUS = 300
-
 
 DINO_DEAD = pygame.image.load(os.path.join(IMG_DIR, 'Dino/DinoDead.png'))
 

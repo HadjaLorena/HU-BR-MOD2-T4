@@ -7,7 +7,7 @@ Y_POS_BIRD = 250
 
 class Bird(Obstacle): # herda tudo da classe Obstacle
     def __init__(self, images):
-        bird_sound = mixer.Sound(BIRD_SOUND)
+        bird_sound = mixer.Sound(BIRD_SOUND) # o sound pode sobrepor a música de background
         bird_sound.play()
         self.type = 0
         self.images = BIRD
