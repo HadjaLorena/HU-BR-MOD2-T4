@@ -1,15 +1,17 @@
 import pygame
+from pygame import mixer
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DINO_DEAD, GAME_OVER, DINO_START
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DINO_DEAD, GAME_OVER, DINO_START, BACKGROUND_MUSIC
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.cloud import Cloud
 from dino_runner.components.menu import Menu
-#from dino_runner.utils.get_format_text import get_format_text
 
 class Game:
     def __init__(self):
         pygame.init()
+        mixer.music.load(BACKGROUND_MUSIC)
+        mixer.music.play(-1) # musica em loop
         pygame.display.set_caption(TITLE)
         pygame.display.set_icon(ICON)
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
