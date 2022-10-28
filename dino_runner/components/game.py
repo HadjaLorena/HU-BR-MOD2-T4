@@ -90,9 +90,13 @@ class Game:
             if(event.type == pygame.QUIT):
                 self.playing = False
                 self.executing = False
+                
             if(event.type == pygame.KEYDOWN):
-                self.reset()
-                self.run()
+                if(event.key == pygame.K_0):
+                    self.menu.display_rules()
+                else:
+                    self.reset()
+                    self.run()
 
 
     def events(self):
