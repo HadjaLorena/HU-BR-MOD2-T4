@@ -1,3 +1,4 @@
+
 import pygame
 import os
 
@@ -7,6 +8,10 @@ SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 FPS = 30
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
+
+BACKGROUND_MUSIC_DIR = os.path.join(os.path.dirname(__file__), "..", "assets/Musics/discord_sound.mp3")
+BIRD_SOUND_DIR = os.path.join(os.path.dirname(__file__), "..", "assets/Musics/bird_sound.mp3")
+FONT_DIR = os.path.join(os.path.dirname(__file__), "..", "assets/Fonts/fonte.ttf")
 
 # Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "DinoWallpaper.png"))
@@ -79,15 +84,14 @@ GAME_OVER = pygame.image.load(os.path.join(IMG_DIR, 'Other/GameOver.png'))
 
 DINO_START = pygame.image.load(os.path.join(IMG_DIR, 'Dino/DinoStart.png'))
 
-BACKGROUND_MUSIC = 'HU-BR-MOD2-T4/dino_runner/utils/discord_sound.mp3'
-BIRD_SOUND = 'HU-BR-MOD2-T4/dino_runner/utils/bird_sound.mp3'
-
-
-SHIELD_TYPE = "shield"
-
-HAMMER_TYPE = "hammer"
 
 Y_POS_SMALL_CACTUS = 325
 Y_POS_LARGE_CACTUS = 300
 
-GAME_FONT = 'HU-BR-MOD2-T4/dino_runner/utils/fonte.ttf'
+GAME_FONT = FONT_DIR
+
+SHIELD_TYPE = "shield"
+HAMMER_TYPE = "hammer"
+
+BACKGROUND_MUSIC = BACKGROUND_MUSIC_DIR
+BIRD_SOUND = BIRD_SOUND_DIR

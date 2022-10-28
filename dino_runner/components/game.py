@@ -1,7 +1,8 @@
+
 import pygame
 from pygame import mixer
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, BACKGROUND_MUSIC, GAME_FONT, DEFAULT_TYPE
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, BACKGROUND_MUSIC
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.cloud import Cloud
@@ -42,7 +43,6 @@ class Game:
             self.events()
             self.update()
             self.draw()
-        #pygame.quit()
 
     def execute(self):
         self.executing = True
