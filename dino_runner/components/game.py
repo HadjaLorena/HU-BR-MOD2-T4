@@ -1,12 +1,13 @@
 import pygame
 from pygame import mixer
 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, BACKGROUND_MUSIC, DEFAULT_TYPE
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, BACKGROUND_MUSIC, GAME_FONT, DEFAULT_TYPE
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.components.cloud import Cloud
 from dino_runner.components.menu import Menu
 from dino_runner.components.power_ups.power_up_manager import PowerUpManager
+from dino_runner.components.font_manager import FontManager
 
 class Game:
     def __init__(self):
@@ -55,7 +56,7 @@ class Game:
     # função principal para desenhar o tempo restante do power up na tela, utiliza da função draw_time_to_screen
     def draw_power_up_time(self):
         if(self.player.has_power_up):
-            time_to_show = round((self.player.power_up_time - pygame.time.get_ticks()) / 1000, 2)
+            time_to_show = round((self.player.power_up_time - pygame.time.get_ticks()) / 1000)
            
             if(time_to_show >= 0):
                 self.draw_time_to_screen(time_to_show)
@@ -67,14 +68,11 @@ class Game:
     
     def draw_time_to_screen(self, time_to_show):
         
-        font_size = 15
-        color = (0,0,0)
-        FONT = 'freesansbold.ttf'
-        font = pygame.font.Font(FONT, font_size)
+        power_up_counter_font = FontManager(20)
         
         text_to_display = f"Power up remaining time: {time_to_show}"
                
-        text = font.render(text_to_display,True, color)
+        text = power_up_counter_font.font.render(text_to_display, True, power_up_counter_font.color)
         text_rect = text.get_rect()
         
         text_rect.x = 850
@@ -144,15 +142,13 @@ class Game:
 
 # adicionado na aula 26/10/2022
     def draw_score(self):
-       # print(self.score)
-        font_size = 32
-        color = (0,0,0)
-        FONT = 'freesansbold.ttf'
+    
+        draw_score_font = FontManager(32)
 
-        font = pygame.font.Font(FONT, font_size)
-        text = font.render(f"Score: {self.score}", True, color)
+        text = draw_score_font.font.render(f"Score: {self.score}", True, draw_score_font.color)
 
         score_text_rect = text.get_rect()
+        
         score_text_rect.x = 850
         score_text_rect.y = 30
 

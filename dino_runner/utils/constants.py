@@ -89,3 +89,5 @@ HAMMER_TYPE = "hammer"
 
 Y_POS_SMALL_CACTUS = 325
 Y_POS_LARGE_CACTUS = 300
+
+GAME_FONT = 'HU-BR-MOD2-T4/dino_runner/utils/fonte.ttf'

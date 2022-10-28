@@ -1,9 +1,11 @@
 import random
+
 import pygame
 from pygame.sprite import Sprite
 # importando os sprites dos obstaculo
 
-from dino_runner.utils.constants import SCREEN_WIDTH, CLOUD, DINO_START, DINO_DEAD, GAME_OVER, SCREEN_HEIGHT
+from dino_runner.utils.constants import SCREEN_WIDTH, DINO_START, DINO_DEAD, GAME_OVER, SCREEN_HEIGHT
+from dino_runner.components.font_manager import FontManager
 
 X_POSITION = 2
 Y_POSITION = 2
@@ -18,11 +20,8 @@ class Menu:
     def __init__(self, screen):
         self.screen = screen
         self.screen.fill((255,255,255))
-        self.font_size = 32
-        self.color = (0,0,0)
-        self.FONT = 'freesansbold.ttf'
-
-        self.font = pygame.font.Font(self.FONT, self.font_size)
+       
+        self.start_menu_font = FontManager(40)
   
     def display_menu(self, count_death, score):
             
@@ -31,7 +30,7 @@ class Menu:
                 dino_start_image = DINO_START
                 dino_start_rect = dino_start_image.get_rect()
 
-                text = self.font.render("Press any key to start", True, self.color)
+                text = self.start_menu_font.font.render("Press any key to start", True, self.start_menu_font.color)
                 text_rect = text.get_rect()
 
                 # imagem do dino no início do game
@@ -42,7 +41,7 @@ class Menu:
 
 
             # se o número de mortes for maior que 0 então entra no elif
-            elif(count_death > 0):
+            else:
                 self.screen.fill((255,255,255))
 
                 dino_dead_image = DINO_DEAD
@@ -51,13 +50,13 @@ class Menu:
                 game_over_image = GAME_OVER
                 game_over_rect = game_over_image.get_rect()
                 
-                text = self.font.render("Press any key to continue playing", True, self.color)
+                text = self.start_menu_font.font.render("Press any key to continue playing", True, self.start_menu_font.color)
                 text_rect = text.get_rect()
 
-                score_text = self.font.render(f"Your Score: {score}", True, self.color)
+                score_text = self.start_menu_font.font.render(f"Your Score: {score}", True, self.start_menu_font.color)
                 score_rect = score_text.get_rect() 
 
-                death_count = self.font.render(f"Number of deaths: {count_death}", True, self.color)
+                death_count = self.start_menu_font.font.render(f"Number of deaths: {count_death}", True, self.start_menu_font.color)
                 death_count_rect = death_count.get_rect()
 
                 # pontuação
