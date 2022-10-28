@@ -9,7 +9,7 @@ from dino_runner.components.power_ups.hammer import Hammer
 class PowerUpManager:
     def __init__(self):
         self.power_ups = []
-        self.to_appears = 0
+
         self.power_type = 0
 
     def generate_power_up(self, score):
@@ -18,11 +18,9 @@ class PowerUpManager:
             self.power_type = random.randint(0, 1)
 
             if(self.power_type == 0):
-                self.to_appears += random.randint(200, 300)
                 self.power_ups.append(Shield())
 
             else:
-                self.to_appears += random.randint(90, 150)
                 self.power_ups.append(Hammer())
 
     def update(self, game):
@@ -43,7 +41,7 @@ class PowerUpManager:
                 else:
                     game.player.has_shield = False
                     game.player.has_hammer = True
-                    
+
                 game.player.has_power_up = True
                 game.player.type = power_up.type
                 game.player.power_up_time = power_up.start_time + (power_up.duration * 1000)
@@ -56,4 +54,4 @@ class PowerUpManager:
 
     def reset_power_up(self):
         self.power_ups = []
-        self.to_appears = 0
+    

@@ -12,7 +12,7 @@ class PowerUp(Sprite):
         
 
         self.rect = self.image.get_rect()
-        self.rect.x = SCREEN_WIDTH + random.randint(800, 1000)
+        self.rect.x = SCREEN_WIDTH + random.randint(800, 5000)
         self.rect.y = random.randint(125, 175) #any position in y 
         #self.rect.y = Y_POS
 
@@ -24,7 +24,7 @@ class PowerUp(Sprite):
 
         if(self.rect.x < self.rect.width): # se o tamanho do rect.x for menor que da tela, então elimina o objeto
             power_ups.pop()
-            self.rect.x = SCREEN_WIDTH + random.randint(800, 1000)
+            self.rect.x = SCREEN_WIDTH + random.randint(800, 5000)
             self.rect.y = random.randint(125, 175) #any position in y 
 
     def draw(self, screen):

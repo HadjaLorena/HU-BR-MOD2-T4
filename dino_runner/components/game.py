@@ -52,6 +52,7 @@ class Game:
         pygame.display.quit()
         pygame.quit()
 
+    # função principal para desenhar o tempo restante do power up na tela, utiliza da função draw_time_to_screen
     def draw_power_up_time(self):
         if(self.player.has_power_up):
             time_to_show = round((self.player.power_up_time - pygame.time.get_ticks()) / 1000, 2)
@@ -76,8 +77,8 @@ class Game:
         text = font.render(text_to_display,True, color)
         text_rect = text.get_rect()
         
-        text_rect.x = 70
-        text_rect.y = 100
+        text_rect.x = 850
+        text_rect.y = 65
         self.screen.blit(text, (text_rect.x, text_rect.y))
 
     def display_menu(self):
@@ -135,6 +136,8 @@ class Game:
 
         #draw score
         self.draw_score()
+        # draw power_up remaining time
+        self.draw_power_up_time()
 
         pygame.display.update()
         pygame.display.flip()

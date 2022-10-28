@@ -57,10 +57,7 @@ class Dinosaur(Sprite):
 
     def update(self, user_input):
 
-        if(self.power_up_time > 0):
-            self.power_up_time -= 100
-
-        else:
+        if(self.power_up_time <= 0):
             self.type = DEFAULT_TYPE
             self.setup_state()
 
